@@ -111,7 +111,6 @@ class WP_Locale {
 	 */
 	public function __construct() {
 		$this->init();
-		$this->register_globals();
 	}
 
 	/**
