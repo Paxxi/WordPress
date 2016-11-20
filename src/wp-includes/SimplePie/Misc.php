@@ -2179,10 +2179,6 @@ function embed_wmedia(width, height, link) {
 			}
 			return $time;
 		}
-		elseif (file_exists(dirname(__FILE__) . '/Core.php'))
-		{
-			return filemtime(dirname(__FILE__) . '/Core.php');
-		}
 		else
 		{
 			return filemtime(__FILE__);

@@ -3878,32 +3878,6 @@ function get_term_link( $term, $taxonomy = '' ) {
 		}
 		$termlink = home_url( user_trailingslashit($termlink, 'category') );
 	}
-	// Back Compat filters.
-	if ( 'post_tag' == $taxonomy ) {
-
-		/**
-		 * Filters the tag link.
-		 *
-		 * @since 2.3.0
-		 * @deprecated 2.5.0 Use 'term_link' instead.
-		 *
-		 * @param string $termlink Tag link URL.
-		 * @param int    $term_id  Term ID.
-		 */
-		$termlink = apply_filters( 'tag_link', $termlink, $term->term_id );
-	} elseif ( 'category' == $taxonomy ) {
-
-		/**
-		 * Filters the category link.
-		 *
-		 * @since 1.5.0
-		 * @deprecated 2.5.0 Use 'term_link' instead.
-		 *
-		 * @param string $termlink Category link URL.
-		 * @param int    $term_id  Term ID.
-		 */
-		$termlink = apply_filters( 'category_link', $termlink, $term->term_id );
-	}
 
 	/**
 	 * Filters the term link.

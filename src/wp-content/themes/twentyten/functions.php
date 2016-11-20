@@ -331,24 +331,6 @@ add_filter( 'get_the_excerpt', 'twentyten_custom_excerpt_more' );
  */
 add_filter( 'use_default_gallery_style', '__return_false' );
 
-/**
- * Deprecated way to remove inline styles printed when the gallery shortcode is used.
- *
- * This function is no longer needed or used. Use the use_default_gallery_style
- * filter instead, as seen above.
- *
- * @since Twenty Ten 1.0
- * @deprecated Deprecated in Twenty Ten 1.2 for WordPress 3.1
- *
- * @return string The gallery style filter, with the styles themselves removed.
- */
-function twentyten_remove_gallery_css( $css ) {
-	return preg_replace( "#<style type='text/css'>(.*?)</style>#s", '', $css );
-}
-// Backwards compatibility with WordPress 3.0.
-if ( version_compare( $GLOBALS['wp_version'], '3.1', '<' ) )
-	add_filter( 'gallery_style', 'twentyten_remove_gallery_css' );
-
 if ( ! function_exists( 'twentyten_comment' ) ) :
 /**
  * Template for comments and pingbacks.

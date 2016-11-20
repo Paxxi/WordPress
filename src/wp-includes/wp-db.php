@@ -269,18 +269,6 @@ class wpdb {
 		'terms', 'term_taxonomy', 'term_relationships', 'termmeta', 'commentmeta' );
 
 	/**
-	 * List of deprecated WordPress tables
-	 *
-	 * categories, post2cat, and link2cat were deprecated in 2.3.0, db version 5539
-	 *
-	 * @since 2.9.0
-	 * @access private
-	 * @see wpdb::tables()
-	 * @var array
-	 */
-	var $old_tables = array( 'categories', 'post2cat', 'link2cat' );
-
-	/**
 	 * List of WordPress global tables
 	 *
 	 * @since 3.0.0
@@ -1009,7 +997,6 @@ class wpdb {
 	 * 'blog' - returns the blog-level tables for the queried blog.
 	 * 'global' - returns the global tables for the installation, returning multisite tables only if running multisite.
 	 * 'ms_global' - returns the multisite global tables, regardless if current installation is multisite.
-	 * 'old' - returns tables which are deprecated.
 	 *
 	 * @since 3.0.0
 	 * @uses wpdb::$tables
@@ -1040,9 +1027,6 @@ class wpdb {
 				break;
 			case 'ms_global' :
 				$tables = $this->ms_global_tables;
-				break;
-			case 'old' :
-				$tables = $this->old_tables;
 				break;
 			default :
 				return array();
@@ -1135,26 +1119,6 @@ class wpdb {
 	}
 
 	/**
-	 * Do not use, deprecated.
-	 *
-	 * Use esc_sql() or wpdb::prepare() instead.
-	 *
-	 * @since 2.8.0
-	 * @deprecated 3.6.0 Use wpdb::prepare()
-	 * @see wpdb::prepare
-	 * @see esc_sql()
-	 * @access private
-	 *
-	 * @param string $string
-	 * @return string
-	 */
-	function _weak_escape( $string ) {
-		if ( func_num_args() === 1 && function_exists( '_deprecated_function' ) )
-			_deprecated_function( __METHOD__, '3.6.0', 'wpdb::prepare() or esc_sql()' );
-		return addslashes( $string );
-	}
-
-	/**
 	 * Real escape, using mysqli_real_escape_string() or mysql_real_escape_string()
 	 *
 	 * @see mysqli_real_escape_string()
@@ -1205,36 +1169,6 @@ class wpdb {
 			}
 		} else {
 			$data = $this->_real_escape( $data );
-		}
-
-		return $data;
-	}
-
-	/**
-	 * Do not use, deprecated.
-	 *
-	 * Use esc_sql() or wpdb::prepare() instead.
-	 *
-	 * @since 0.71
-	 * @deprecated 3.6.0 Use wpdb::prepare()
-	 * @see wpdb::prepare()
-	 * @see esc_sql()
-	 *
-	 * @param mixed $data
-	 * @return mixed
-	 */
-	public function escape( $data ) {
-		if ( func_num_args() === 1 && function_exists( '_deprecated_function' ) )
-			_deprecated_function( __METHOD__, '3.6.0', 'wpdb::prepare() or esc_sql()' );
-		if ( is_array( $data ) ) {
-			foreach ( $data as $k => $v ) {
-				if ( is_array( $v ) )
-					$data[$k] = $this->escape( $v, 'recursive' );
-				else
-					$data[$k] = $this->_weak_escape( $v, 'internal' );
-			}
-		} else {
-			$data = $this->_weak_escape( $data, 'internal' );
 		}
 
 		return $data;
@@ -3215,23 +3149,6 @@ class wpdb {
 		// Make sure the server has the required MySQL version
 		if ( version_compare($this->db_version(), $required_mysql_version, '<') )
 			return new WP_Error('database_version', sprintf( __( '<strong>ERROR</strong>: WordPress %1$s requires MySQL %2$s or higher' ), $wp_version, $required_mysql_version ));
-	}
-
-	/**
-	 * Whether the database supports collation.
-	 *
-	 * Called when WordPress is generating the table scheme.
-	 *
-	 * Use `wpdb::has_cap( 'collation' )`.
-	 *
-	 * @since 2.5.0
-	 * @deprecated 3.5.0 Use wpdb::has_cap()
-	 *
-	 * @return bool True if collation is supported, false if version does not
-	 */
-	public function supports_collation() {
-		_deprecated_function( __FUNCTION__, '3.5.0', 'wpdb::has_cap( \'collation\' )' );
-		return $this->has_cap( 'collation' );
 	}
 
 	/**

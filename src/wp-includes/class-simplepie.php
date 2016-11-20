@@ -931,22 +931,6 @@ class SimplePie
 		return $this->registry;
 	}
 
-	/**#@+
-	 * Useful when you are overloading or extending SimplePie's default classes.
-	 *
-	 * @deprecated Use {@see get_registry()} instead
-	 * @link http://php.net/manual/en/language.oop5.basic.php#language.oop5.basic.extends PHP5 extends documentation
-	 * @param string $class Name of custom class
-	 * @return boolean True on success, false otherwise
-	 */
-	/**
-	 * Set which class SimplePie uses for caching
-	 */
-	public function set_cache_class($class = 'SimplePie_Cache')
-	{
-		return $this->registry->register('Cache', $class, true);
-	}
-
 	/**
 	 * Set which class SimplePie uses for auto-discovery
 	 */
@@ -2956,36 +2940,6 @@ class SimplePie
 		{
 			return array();
 		}
-	}
-
-	/**
-	 * Set the favicon handler
-	 *
-	 * @deprecated Use your own favicon handling instead
-	 */
-	public function set_favicon_handler($page = false, $qs = 'i')
-	{
-		$level = defined('E_USER_DEPRECATED') ? E_USER_DEPRECATED : E_USER_WARNING;
-		trigger_error('Favicon handling has been removed, please use your own handling', $level);
-		return false;
-	}
-
-	/**
-	 * Get the favicon for the current feed
-	 *
-	 * @deprecated Use your own favicon handling instead
-	 */
-	public function get_favicon()
-	{
-		$level = defined('E_USER_DEPRECATED') ? E_USER_DEPRECATED : E_USER_WARNING;
-		trigger_error('Favicon handling has been removed, please use your own handling', $level);
-
-		if (($url = $this->get_link()) !== null)
-		{
-			return 'http://g.etfv.co/' . urlencode($url);
-		}
-
-		return false;
 	}
 
 	/**

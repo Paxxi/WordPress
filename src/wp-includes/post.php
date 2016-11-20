@@ -4184,25 +4184,6 @@ function get_all_page_ids() {
 }
 
 /**
- * Retrieves page data given a page ID or page object.
- *
- * Use get_post() instead of get_page().
- *
- * @since 1.5.1
- * @deprecated 3.5.0 Use get_post()
- *
- * @param mixed  $page   Page object or page ID. Passed by reference.
- * @param string $output Optional. The required return type. One of OBJECT, ARRAY_A, or ARRAY_N, which correspond to
- *                       a WP_Post object, an associative array, or a numeric array, respectively. Default OBJECT.
- * @param string $filter Optional. How the return value should be filtered. Accepts 'raw',
- *                       'edit', 'db', 'display'. Default 'raw'.
- * @return WP_Post|array|null WP_Post (or array) on success, or null on failure.
- */
-function get_page( $page, $output = OBJECT, $filter = 'raw') {
-	return get_post( $page, $output, $filter );
-}
-
-/**
  * Retrieves a page given its path.
  *
  * @since 2.1.0
@@ -5454,19 +5435,6 @@ function get_posts_by_author_sql( $post_type, $full = true, $post_author = null,
 			continue;
 		}
 
-		/**
-		 * Filters the capability to read private posts for a custom post type
-		 * when generating SQL for getting posts by author.
-		 *
-		 * @since 2.2.0
-		 * @deprecated 3.2.0 The hook transitioned from "somewhat useless" to "totally useless".
-		 *
-		 * @param string $cap Capability.
-		 */
-		if ( ! $cap = apply_filters( 'pub_priv_sql_capability', '' ) ) {
-			$cap = current_user_can( $post_type_obj->cap->read_private_posts );
-		}
-
 		// Only need to check the cap if $public_only is false.
 		$post_status_sql = "post_status = 'publish'";
 		if ( false === $public_only ) {
@@ -5850,16 +5818,6 @@ function _transition_post_status( $new_status, $old_status, $post ) {
 		// Reset GUID if transitioning to publish and it is empty.
 		if ( '' == get_the_guid($post->ID) )
 			$wpdb->update( $wpdb->posts, array( 'guid' => get_permalink( $post->ID ) ), array( 'ID' => $post->ID ) );
-
-		/**
-		 * Fires when a post's status is transitioned from private to published.
-		 *
-		 * @since 1.5.0
-		 * @deprecated 2.3.0 Use 'private_to_publish' instead.
-		 *
-		 * @param int $post_id Post ID.
-		 */
-		do_action('private_to_published', $post->ID);
 	}
 
 	// If published posts changed clear the lastpostmodified cache.

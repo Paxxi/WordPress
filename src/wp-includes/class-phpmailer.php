@@ -86,16 +86,6 @@ class PHPMailer
     public $Sender = '';
 
     /**
-     * The Return-Path of the message.
-     * If empty, it will be set to either From or Sender.
-     * @var string
-     * @deprecated Email senders should never set a return-path header;
-     * it's the receiver's job (RFC5321 section 4.4), so this no longer does anything.
-     * @link https://tools.ietf.org/html/rfc5321#section-4.4 RFC5321 reference
-     */
-    public $ReturnPath = '';
-
-    /**
      * The Subject of the message.
      * @var string
      */
@@ -174,14 +164,6 @@ class PHPMailer
      * @var boolean
      */
     public $UseSendmailOptions = true;
-
-    /**
-     * Path to PHPMailer plugins.
-     * Useful if the SMTP class is not in the PHP include path.
-     * @var string
-     * @deprecated Should not be needed now there is an autoloader.
-     */
-    public $PluginDir = '';
 
     /**
      * The email address that a reading confirmation should be sent to, also known as read receipt.
@@ -2739,24 +2721,6 @@ class PHPMailer
             rawurlencode($string)
         );
         return preg_replace('/[^\r\n]{' . ($line_max - 3) . '}[^=\r\n]{2}/', "$0=\r\n", $string);
-    }
-
-    /**
-     * Backward compatibility wrapper for an old QP encoding function that was removed.
-     * @see PHPMailer::encodeQP()
-     * @access public
-     * @param string $string
-     * @param integer $line_max
-     * @param boolean $space_conv
-     * @return string
-     * @deprecated Use encodeQP instead.
-     */
-    public function encodeQPphp(
-        $string,
-        $line_max = 76,
-        /** @noinspection PhpUnusedParameterInspection */ $space_conv = false
-    ) {
-        return $this->encodeQP($string, $line_max);
     }
 
     /**

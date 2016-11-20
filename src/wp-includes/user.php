@@ -2065,18 +2065,6 @@ function get_password_reset_key( $user ) {
 	/**
 	 * Fires before a new password is retrieved.
 	 *
-	 * Use the {@see 'retrieve_password'} hook instead.
-	 *
-	 * @since 1.5.0
-	 * @deprecated 1.5.1 Misspelled. Use 'retrieve_password' hook instead.
-	 *
-	 * @param string $user_login The user login name.
-	 */
-	do_action( 'retreive_password', $user->user_login );
-
-	/**
-	 * Fires before a new password is retrieved.
-	 *
 	 * @since 1.5.1
 	 *
 	 * @param string $user_login The user login name.

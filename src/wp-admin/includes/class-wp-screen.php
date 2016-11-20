@@ -60,30 +60,6 @@ final class WP_Screen {
 	protected $in_admin;
 
 	/**
-	 * Whether the screen is in the network admin.
-	 *
-	 * Deprecated. Use in_admin() instead.
-	 *
-	 * @since 3.3.0
-	 * @deprecated 3.5.0
-	 * @var bool
-	 * @access public
-	 */
-	public $is_network;
-
-	/**
-	 * Whether the screen is in the user admin.
-	 *
-	 * Deprecated. Use in_admin() instead.
-	 *
-	 * @since 3.3.0
-	 * @deprecated 3.5.0
-	 * @var bool
-	 * @access public
-	 */
-	public $is_user;
-
-	/**
 	 * The base menu parent.
 	 * This is derived from $parent_file by removing the query string and any .php extension.
 	 * $parent_file values of 'edit.php?post_type=page' and 'edit.php?post_type=post' have a $parent_base of 'edit'.
@@ -727,60 +703,6 @@ final class WP_Screen {
 	 * @global string $screen_layout_columns
 	 */
 	public function render_screen_meta() {
-
-		/**
-		 * Filters the legacy contextual help list.
-		 *
-		 * @since 2.7.0
-		 * @deprecated 3.3.0 Use get_current_screen()->add_help_tab() or
-		 *                   get_current_screen()->remove_help_tab() instead.
-		 *
-		 * @param array     $old_compat_help Old contextual help.
-		 * @param WP_Screen $this            Current WP_Screen instance.
-		 */
-		self::$_old_compat_help = apply_filters( 'contextual_help_list', self::$_old_compat_help, $this );
-
-		$old_help = isset( self::$_old_compat_help[ $this->id ] ) ? self::$_old_compat_help[ $this->id ] : '';
-
-		/**
-		 * Filters the legacy contextual help text.
-		 *
-		 * @since 2.7.0
-		 * @deprecated 3.3.0 Use get_current_screen()->add_help_tab() or
-		 *                   get_current_screen()->remove_help_tab() instead.
-		 *
-		 * @param string    $old_help  Help text that appears on the screen.
-		 * @param string    $screen_id Screen ID.
-		 * @param WP_Screen $this      Current WP_Screen instance.
-		 *
-		 */
-		$old_help = apply_filters( 'contextual_help', $old_help, $this->id, $this );
-
-		// Default help only if there is no old-style block of text and no new-style help tabs.
-		if ( empty( $old_help ) && ! $this->get_help_tabs() ) {
-
-			/**
-			 * Filters the default legacy contextual help text.
-			 *
-			 * @since 2.8.0
-			 * @deprecated 3.3.0 Use get_current_screen()->add_help_tab() or
-			 *                   get_current_screen()->remove_help_tab() instead.
-			 *
-			 * @param string $old_help_default Default contextual help text.
-			 */
-			$default_help = apply_filters( 'default_contextual_help', '' );
-			if ( $default_help )
-				$old_help = '<p>' . $default_help . '</p>';
-		}
-
-		if ( $old_help ) {
-			$this->add_help_tab( array(
-				'id'      => 'old-contextual-help',
-				'title'   => __('Overview'),
-				'content' => $old_help,
-			) );
-		}
-
 		$help_sidebar = $this->get_help_sidebar();
 
 		$help_class = 'hidden';

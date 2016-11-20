@@ -124,13 +124,6 @@ class WP_Customize_Control {
 	public $allow_addition = false;
 
 	/**
-	 * @deprecated It is better to just call the json() method
-	 * @access public
-	 * @var array
-	 */
-	public $json = array();
-
-	/**
 	 * @access public
 	 * @var string
 	 */

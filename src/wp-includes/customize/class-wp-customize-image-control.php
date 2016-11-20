@@ -41,37 +41,4 @@ class WP_Customize_Image_Control extends WP_Customize_Upload_Control {
 			'frame_button' => __( 'Choose Image' ),
 		) );
 	}
-
-	/**
-	 * @since 3.4.2
-	 * @deprecated 4.1.0
-	 */
-	public function prepare_control() {}
-
-	/**
-	 * @since 3.4.0
-	 * @deprecated 4.1.0
-	 *
-	 * @param string $id
-	 * @param string $label
-	 * @param mixed $callback
-	 */
-	public function add_tab( $id, $label, $callback ) {}
-
-	/**
-	 * @since 3.4.0
-	 * @deprecated 4.1.0
-	 *
-	 * @param string $id
-	 */
-	public function remove_tab( $id ) {}
-
-	/**
-	 * @since 3.4.0
-	 * @deprecated 4.1.0
-	 *
-	 * @param string $url
-	 * @param string $thumbnail_url
-	 */
-	public function print_tab_image( $url, $thumbnail_url = null ) {}
 }

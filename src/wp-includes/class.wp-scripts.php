@@ -64,16 +64,6 @@ class WP_Scripts extends WP_Dependencies {
 	public $concat = '';
 
 	/**
-	 * Holds a string which contains script handles and their version.
-	 *
-	 * @since 2.8.0
-	 * @deprecated 3.4.0
-	 * @access public
-	 * @var string
-	 */
-	public $concat_version = '';
-
-	/**
 	 * Whether to perform concatenation.
 	 *
 	 * @since 2.8.0
@@ -179,26 +169,6 @@ class WP_Scripts extends WP_Dependencies {
 	 */
 	public function print_scripts( $handles = false, $group = false ) {
 		return $this->do_items( $handles, $group );
-	}
-
-	/**
-	 * Prints extra scripts of a registered script.
-	 *
-	 * @since 2.1.0
-	 * @since 2.8.0 Added the `$echo` parameter.
-	 * @deprecated 3.3.0
-	 * @access public
-	 *
-	 * @see print_extra_script()
-	 *
-	 * @param string $handle The script's registered handle.
-	 * @param bool   $echo   Optional. Whether to echo the extra script instead of just returning it.
-	 *                       Default true.
-	 * @return bool|string|void Void if no data exists, extra scripts if `$echo` is true, true otherwise.
-	 */
-	public function print_scripts_l10n( $handle, $echo = true ) {
-		_deprecated_function( __FUNCTION__, '3.3.0', 'print_extra_script()' );
-		return $this->print_extra_script( $handle, $echo );
 	}
 
 	/**

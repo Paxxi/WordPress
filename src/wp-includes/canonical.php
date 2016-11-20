@@ -302,7 +302,6 @@ function redirect_canonical( $requested_url = null, $do_redirect = true ) {
 					'wp-commentsrss2.php' => 'comments_rss2',
 					'wp-feed.php'         => get_default_feed(),
 					'wp-rdf.php'          => 'rdf',
-					'wp-rss.php'          => 'rss2',
 					'wp-rss2.php'         => 'rss2',
 				);
 				if ( isset( $old_feed_files[ basename( $redirect['path'] ) ] ) ) {

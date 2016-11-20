@@ -312,17 +312,6 @@ class Requests_Cookie {
 	}
 
 	/**
-	 * Format a cookie for a Cookie header
-	 *
-	 * @codeCoverageIgnore
-	 * @deprecated Use {@see Requests_Cookie::format_for_header}
-	 * @return string
-	 */
-	public function formatForHeader() {
-		return $this->format_for_header();
-	}
-
-	/**
 	 * Format a cookie for a Set-Cookie header
 	 *
 	 * This is used when sending cookies to clients. This isn't really
@@ -347,17 +336,6 @@ class Requests_Cookie {
 			$header_value .= '; ' . implode('; ', $parts);
 		}
 		return $header_value;
-	}
-
-	/**
-	 * Format a cookie for a Set-Cookie header
-	 *
-	 * @codeCoverageIgnore
-	 * @deprecated Use {@see Requests_Cookie::format_for_set_cookie}
-	 * @return string
-	 */
-	public function formatForSetCookie() {
-		return $this->format_for_set_cookie();
 	}
 
 	/**
@@ -485,16 +463,5 @@ class Requests_Cookie {
 		}
 
 		return $cookies;
-	}
-
-	/**
-	 * Parse all Set-Cookie headers from request headers
-	 *
-	 * @codeCoverageIgnore
-	 * @deprecated Use {@see Requests_Cookie::parse_from_headers}
-	 * @return string
-	 */
-	public static function parseFromHeaders(Requests_Response_Headers $headers) {
-		return self::parse_from_headers($headers);
 	}
 }

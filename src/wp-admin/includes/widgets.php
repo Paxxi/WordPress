@@ -122,8 +122,6 @@ function wp_list_widget_controls_dynamic_sidebar( $params ) {
 
 	$params[0]['before_widget'] = "<div id='widget-{$i}_{$id}' class='widget'$hidden>";
 	$params[0]['after_widget'] = "</div>";
-	$params[0]['before_title'] = "%BEG_OF_TITLE%"; // deprecated
-	$params[0]['after_title'] = "%END_OF_TITLE%"; // deprecated
 	if ( is_callable( $wp_registered_widgets[$widget_id]['callback'] ) ) {
 		$wp_registered_widgets[$widget_id]['_callback'] = $wp_registered_widgets[$widget_id]['callback'];
 		$wp_registered_widgets[$widget_id]['callback'] = 'wp_widget_control';

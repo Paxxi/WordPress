@@ -258,17 +258,6 @@ function wp_stream_image( $image, $mime_type, $post_id ) {
 	} else {
 		_deprecated_argument( __FUNCTION__, '3.5.0', __( '$image needs to be an WP_Image_Editor object' ) );
 
-		/**
-		 * Filters the GD image resource to be streamed to the browser.
-		 *
-		 * @since 2.9.0
-		 * @deprecated 3.5.0 Use image_editor_save_pre instead.
-		 *
-		 * @param resource $image   Image resource to be streamed.
-		 * @param int      $post_id Post ID.
-		 */
-		$image = apply_filters( 'image_save_pre', $image, $post_id );
-
 		switch ( $mime_type ) {
 			case 'image/jpeg':
 				header( 'Content-Type: image/jpeg' );
@@ -325,26 +314,6 @@ function wp_save_image_file( $filename, $image, $mime_type, $post_id ) {
 
 		/** This filter is documented in wp-admin/includes/image-edit.php */
 		$image = apply_filters( 'image_save_pre', $image, $post_id );
-
-		/**
-		 * Filters whether to skip saving the image file.
-		 *
-		 * Returning a non-null value will short-circuit the save method,
-		 * returning that value instead.
-		 *
-		 * @since 2.9.0
-		 * @deprecated 3.5.0 Use wp_save_image_editor_file instead.
-		 *
-		 * @param mixed           $override  Value to return instead of saving. Default null.
-		 * @param string          $filename  Name of the file to be saved.
-		 * @param WP_Image_Editor $image     WP_Image_Editor instance.
-		 * @param string          $mime_type Image mime type.
-		 * @param int             $post_id   Post ID.
-		 */
-		$saved = apply_filters( 'wp_save_image_file', null, $filename, $image, $mime_type, $post_id );
-
-		if ( null !== $saved )
-			return $saved;
 
 		switch ( $mime_type ) {
 			case 'image/jpeg':
@@ -522,18 +491,6 @@ function image_edit_apply_changes( $image, $changes ) {
  		 * @param array           $changes Array of change operations.
 		 */
 		$image = apply_filters( 'wp_image_editor_before_change', $image, $changes );
-	} elseif ( is_resource( $image ) ) {
-
-		/**
-		 * Filters the GD image resource before applying changes to the image.
-		 *
-		 * @since 2.9.0
-		 * @deprecated 3.5.0 Use wp_image_editor_before_change instead.
-		 *
-		 * @param resource $image   GD image resource.
- 		 * @param array    $changes Array of change operations.
-		 */
-		$image = apply_filters( 'image_edit_before_change', $image, $changes );
 	}
 
 	foreach ( $changes as $operation ) {

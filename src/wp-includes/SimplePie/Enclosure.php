@@ -133,12 +133,6 @@ class SimplePie_Enclosure
 	var $height;
 
 	/**
-	 * @deprecated
-	 * @var null
-	 */
-	var $javascript;
-
-	/**
 	 * @var array
 	 * @see get_keywords()
 	 */
@@ -907,19 +901,6 @@ class SimplePie_Enclosure
 		{
 			return null;
 		}
-	}
-
-	/**
-	 * Embed the enclosure using `<embed>`
-	 *
-	 * @deprecated Use the second parameter to {@see embed} instead
-	 *
-	 * @param array|string $options See first paramter to {@see embed}
-	 * @return string HTML string to output
-	 */
-	public function native_embed($options='')
-	{
-		return $this->embed($options, true);
 	}
 
 	/**
