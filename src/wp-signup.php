@@ -397,18 +397,6 @@ function validate_another_blog_signup() {
 	}
 
 	/**
-	 * Filters the new site meta variables.
-	 *
-	 * Use the {@see 'add_signup_meta'} filter instead.
-	 *
-	 * @since MU
-	 * @deprecated 3.0.0 Use the {@see 'add_signup_meta'} filter instead.
-	 *
-	 * @param array $blog_meta_defaults An array of default blog meta variables.
-	 */
-	$meta_defaults = apply_filters( 'signup_create_blog_meta', $blog_meta_defaults );
-
-	/**
 	 * Filters the new default site meta variables.
 	 *
 	 * @since 3.0.0

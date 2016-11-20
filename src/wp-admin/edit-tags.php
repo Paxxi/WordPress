@@ -320,38 +320,6 @@ endif; ?>
 <?php
 
 if ( current_user_can($tax->cap->edit_terms) ) {
-	if ( 'category' == $taxonomy ) {
-		/**
- 		 * Fires before the Add Category form.
-		 *
-		 * @since 2.1.0
-		 * @deprecated 3.0.0 Use {$taxonomy}_pre_add_form instead.
-		 *
-		 * @param object $arg Optional arguments cast to an object.
-		 */
-		do_action( 'add_category_form_pre', (object) array( 'parent' => 0 ) );
-	} elseif ( 'link_category' == $taxonomy ) {
-		/**
-		 * Fires before the link category form.
-		 *
-		 * @since 2.3.0
-		 * @deprecated 3.0.0 Use {$taxonomy}_pre_add_form instead.
-		 *
-		 * @param object $arg Optional arguments cast to an object.
-		 */
-		do_action( 'add_link_category_form_pre', (object) array( 'parent' => 0 ) );
-	} else {
-		/**
-		 * Fires before the Add Tag form.
-		 *
-		 * @since 2.5.0
-		 * @deprecated 3.0.0 Use {$taxonomy}_pre_add_form instead.
-		 *
-		 * @param string $taxonomy The taxonomy slug.
-		 */
-		do_action( 'add_tag_form_pre', $taxonomy );
-	}
-
 	/**
 	 * Fires before the Add Term form for all taxonomies.
 	 *
@@ -468,38 +436,6 @@ if ( ! is_taxonomy_hierarchical( $taxonomy ) ) {
 do_action( "{$taxonomy}_add_form_fields", $taxonomy );
 
 submit_button( $tax->labels->add_new_item );
-
-if ( 'category' == $taxonomy ) {
-	/**
-	 * Fires at the end of the Edit Category form.
-	 *
-	 * @since 2.1.0
-	 * @deprecated 3.0.0 Use {$taxonomy}_add_form instead.
-	 *
-	 * @param object $arg Optional arguments cast to an object.
-	 */
-	do_action( 'edit_category_form', (object) array( 'parent' => 0 ) );
-} elseif ( 'link_category' == $taxonomy ) {
-	/**
-	 * Fires at the end of the Edit Link form.
-	 *
-	 * @since 2.3.0
-	 * @deprecated 3.0.0 Use {$taxonomy}_add_form instead.
-	 *
-	 * @param object $arg Optional arguments cast to an object.
-	 */
-	do_action( 'edit_link_category_form', (object) array( 'parent' => 0 ) );
-} else {
-	/**
-	 * Fires at the end of the Add Tag form.
-	 *
-	 * @since 2.7.0
-	 * @deprecated 3.0.0 Use {$taxonomy}_add_form instead.
-	 *
-	 * @param string $taxonomy The taxonomy slug.
-	 */
-	do_action( 'add_tag_form', $taxonomy );
-}
 
 /**
  * Fires at the end of the Add Term form for all taxonomies.

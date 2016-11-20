@@ -275,16 +275,6 @@ if ( post_type_supports($post_type, 'trackbacks') )
 if ( post_type_supports($post_type, 'custom-fields') )
 	add_meta_box('postcustom', __('Custom Fields'), 'post_custom_meta_box', null, 'normal', 'core');
 
-/**
- * Fires in the middle of built-in meta box registration.
- *
- * @since 2.1.0
- * @deprecated 3.7.0 Use 'add_meta_boxes' instead.
- *
- * @param WP_Post $post Post object.
- */
-do_action( 'dbx_post_advanced', $post );
-
 // Allow the Discussion meta box to show up if the post type supports comments,
 // or if comments or pings are open.
 if ( comments_open( $post ) || pings_open( $post ) || post_type_supports( $post_type, 'comments' ) ) {
