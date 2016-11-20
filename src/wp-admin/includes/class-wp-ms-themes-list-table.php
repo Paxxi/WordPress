@@ -448,21 +448,6 @@ class WP_MS_Themes_List_Table extends WP_List_Table {
 			);
 		}
 
-		if ( current_user_can('edit_themes') ) {
-			$url = add_query_arg( array(
-				'theme' => $theme_key,
-			), 'theme-editor.php' );
-
-			/* translators: %s: theme name */
-			$aria_label = sprintf( __( 'Open %s in the Theme Editor' ), $theme->display( 'Name' ) );
-
-			$actions['edit'] = sprintf( '<a href="%s" class="edit" aria-label="%s">%s</a>',
-				esc_url( $url ),
-				esc_attr( $aria_label ),
-				__( 'Edit' )
-			);
-		}
-
 		if ( ! $allowed && current_user_can( 'delete_themes' ) && ! $this->is_site_themes && $stylesheet != get_option( 'stylesheet' ) && $stylesheet != get_option( 'template' ) ) {
 			$url = add_query_arg( array(
 				'action'       => 'delete-selected',

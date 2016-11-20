@@ -637,10 +637,6 @@ class WP_Plugins_List_Table extends WP_List_Table {
 
 			 } // end if $screen->in_admin( 'network' )
 
-			if ( ( ! is_multisite() || $screen->in_admin( 'network' ) ) && current_user_can( 'edit_plugins' ) && is_writable( WP_PLUGIN_DIR . '/' . $plugin_file ) ) {
-				/* translators: %s: plugin name */
-				$actions['edit'] = '<a href="plugin-editor.php?file=' . $plugin_file . '" class="edit" aria-label="' . esc_attr( sprintf( __( 'Edit %s' ), $plugin_data['Name'] ) ) . '">' . __( 'Edit' ) . '</a>';
-			}
 		} // end if $context
 
 		$actions = array_filter( $actions );
